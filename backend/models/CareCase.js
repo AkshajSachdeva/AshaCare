@@ -124,6 +124,11 @@ const proofSchema = new mongoose.Schema(
         uploadedAt: { type: Date, default: null },
         verificationMessage: { type: String, default: "" },
         verifiedAt: { type: Date, default: null },
+        verifiedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            default: null,
+        },
     },
     { _id: false }
 );

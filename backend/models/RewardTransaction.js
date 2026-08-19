@@ -38,6 +38,22 @@ const rewardTransactionSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+rewardTransactionSchema.index(
+    { workerId: 1, caseId: 1, actionType: 1 },
+    {
+        unique: true,
+        partialFilterExpression: { actionType: "hospital_visit_verified" },
+    }
+);
+
+rewardTransactionSchema.index(
+    { workerId: 1, patientId: 1, actionType: 1 },
+    {
+        unique: true,
+        partialFilterExpression: { actionType: "scheme_registered" },
+    }
+);
+
 const RewardTransaction = mongoose.model(
     "RewardTransaction",
     rewardTransactionSchema
