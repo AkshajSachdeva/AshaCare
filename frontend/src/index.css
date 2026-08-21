@@ -10,6 +10,18 @@
     text-rendering: optimizeLegibility;
 }
 
+:root[data-text-size="small"] {
+    font-size: 14px;
+}
+
+:root[data-text-size="medium"] {
+    font-size: 16px;
+}
+
+:root[data-text-size="large"] {
+    font-size: 18px;
+}
+
 body {
     margin: 0;
     min-width: 320px;
@@ -22,4 +34,59 @@ input,
 textarea,
 select {
     font: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid #047857;
+    outline-offset: 3px;
+}
+
+.skip-link {
+    position: fixed;
+    z-index: 50;
+    top: 0.5rem;
+    left: 0.5rem;
+    transform: translateY(-150%);
+    border-radius: 0.5rem;
+    background: #064e3b;
+    padding: 0.75rem 1rem;
+    color: white;
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.high-contrast,
+.high-contrast body {
+    background: #ffffff;
+    color: #000000;
+}
+
+.high-contrast * {
+    border-color: currentColor !important;
+}
+
+.high-contrast .bg-slate-50,
+.high-contrast .bg-emerald-50,
+.high-contrast .bg-amber-100,
+.high-contrast .bg-red-50 {
+    background-color: #ffffff !important;
+}
+
+.high-contrast .text-slate-500,
+.high-contrast .text-slate-600,
+.high-contrast .text-slate-700,
+.high-contrast .text-emerald-700,
+.high-contrast .text-emerald-800,
+.high-contrast .text-amber-900,
+.high-contrast .text-red-700 {
+    color: #000000 !important;
+}
+
+.high-contrast .bg-emerald-700,
+.high-contrast .bg-slate-800 {
+    background-color: #000000 !important;
+    color: #ffffff !important;
 }
