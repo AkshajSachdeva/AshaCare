@@ -6,7 +6,7 @@ import { useLanguage } from "../i18n";
 const AppShell = () => {
     const navigate = useNavigate();
     const { t } = useLanguage();
-    const navigationItems = [{ label: t.home, to: "/" }, { label: t.schemes, to: "/schemes" }, { label: t.profile, to: "/profile" }];
+    const navigationItems = [{ label: t.home, to: "/" }, { label: t.patients, to: "/patients" }, { label: t.followUps, to: "/follow-ups" }, { label: t.schemes, to: "/schemes" }, { label: t.rewards, to: "/rewards" }, { label: t.profile, to: "/profile" }];
     let currentUser = null;
     try {
         currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
@@ -56,12 +56,6 @@ const AppShell = () => {
                             {item.label}
                         </NavLink>
                     ))}
-                    <span title={t.patientListNote} className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-slate-400">
-                        {t.patients}
-                    </span>
-                    <span title={t.rewardsNote} className="whitespace-nowrap rounded-lg px-3 py-2 text-sm font-semibold text-slate-400">
-                        {t.rewards}
-                    </span>
                 </div>
             </header>
 

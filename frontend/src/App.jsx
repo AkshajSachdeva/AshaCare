@@ -12,6 +12,11 @@ import AppointmentPage from "./pages/AppointmentPage";
 import SchemesPage from "./pages/SchemesPage";
 import SchemeDetailsPage from "./pages/SchemeDetailsPage";
 import SchemeRegistrationPage from "./pages/SchemeRegistrationPage";
+import PatientsPage from "./pages/PatientsPage";
+import AddBeneficiaryPage from "./pages/AddBeneficiaryPage";
+import FollowUpsPage from "./pages/FollowUpsPage";
+import FollowUpDetailPage from "./pages/FollowUpDetailPage";
+import RewardsPage from "./pages/RewardsPage";
 
 const App = () => (
     <Routes>
@@ -22,6 +27,11 @@ const App = () => (
             <Route path="/schemes" element={<SchemesPage />} />
             <Route path="/schemes/:schemeId" element={<SchemeDetailsPage />} />
             <Route path="/schemes/:schemeId/register" element={<SchemeRegistrationPage />} />
+            <Route path="/patients" element={<PatientsPage />} />
+            <Route path="/patients/new" element={<AddBeneficiaryPage />} />
+            <Route path="/follow-ups" element={<FollowUpsPage />} />
+            <Route path="/follow-ups/:followUpId" element={<FollowUpDetailPage />} />
+            <Route path="/rewards" element={<RewardsPage />} />
             <Route path="/profile" element={<ProfileSettingsPage />} />
             <Route path="/settings" element={<ProfileSettingsPage />} />
             <Route path="/patients/:patientId" element={<PatientProfilePage />} />
