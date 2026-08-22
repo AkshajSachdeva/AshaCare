@@ -5,7 +5,7 @@ const userSchema = new Schema({
   fullName: { type: String, required: true, trim: true }, phoneNumber: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true, lowercase: true }, passwordHash: { type: String, required: true, select: false },
   role: { type: String, enum: ['asha_worker', 'supervisor'], default: 'asha_worker' }, preferredLanguage: { type: String, enum: ['en','hi','gu','mr'], default: 'en' },
-  totalPoints: { type: Number, default: 0 }, assignedRegion: { type: String, default: 'Anand Rural' }
+  totalPoints: { type: Number, default: 0 }, assignedRegion: { type: String, default: 'Anand Rural' }, profilePhoto: { type: String, default: '' }
 }, { timestamps: true });
 
 const patientSchema = new Schema({
@@ -57,4 +57,3 @@ export const SchemeEnrollment = model('SchemeEnrollment', enrollmentSchema);
 export const RewardTransaction = model('RewardTransaction', rewardSchema);
 export const Notification = model('Notification', notificationSchema);
 export const PolicyUpdate = model('PolicyUpdate', policySchema);
-
