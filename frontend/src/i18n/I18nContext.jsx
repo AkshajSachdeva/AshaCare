@@ -1,0 +1,2 @@
+import{createContext,useContext,useMemo,useState}from'react';import{translations}from'./translations';const C=createContext();export function I18nProvider({children}){const[language,setLanguageState]=useState(localStorage.getItem('language')||'en');const setLanguage=l=>{localStorage.setItem('language',l);setLanguageState(l)};const value=useMemo(()=>({language,setLanguage,t:k=>translations[language]?.[k]||translations.en[k]||k}),[language]);return <C.Provider value={value}>{children}</C.Provider>}export const useI18n=()=>useContext(C);
+
