@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
     calendar[key].visits++;
     calendar[key].patients.push({
       id: patient?._id,
-      name: patient?.fullName || careCase.patientId?.fullName || 'Patient',
+      name: patient?.fullName || careCase.patientId?.fullName || 'Beneficiary',
       riskLevel: patient?.currentRiskLevel || 'green',
     });
   }

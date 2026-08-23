@@ -3,16 +3,20 @@ const { Schema, model } = mongoose;
 
 const userSchema = new Schema({
   fullName: { type: String, required: true, trim: true }, phoneNumber: { type: String, required: true, unique: true },
+  ashaId: { type: String, unique: true, sparse: true, uppercase: true, trim: true },
   email: { type: String, required: true, unique: true, lowercase: true }, passwordHash: { type: String, required: true, select: false },
   role: { type: String, enum: ['asha_worker', 'supervisor'], default: 'asha_worker' }, preferredLanguage: { type: String, enum: ['en','hi','gu','mr'], default: 'en' },
-  totalPoints: { type: Number, default: 0 }, assignedRegion: { type: String, default: 'Anand Rural' }, profilePhoto: { type: String, default: '' }
+  totalPoints: { type: Number, default: 0 }, assignedRegion: { type: String, trim: true, maxlength: 120, default: 'Anand Rural' }, profilePhoto: { type: String, default: '' }
 }, { timestamps: true });
 
 const patientSchema = new Schema({
   fullName: { type: String, required: true }, age: { type: Number, required: true, min: 0, max: 120 }, gender: { type: String, enum: ['male','female','other'], required: true },
-  phoneNumber: String, address: String, village: String, healthCategories: [{ type: String, enum: ['pregnancy','blood_pressure','diabetes','tuberculosis','general'] }],
+  phoneNumber: String, address: String, village: String,
+  description: { type: String, trim: true, maxlength: 1000, default: '' },
+  healthCategories: [{ type: String, enum: ['pregnancy','blood_pressure','diabetes','tuberculosis','general'] }],
   assignedWorkerId: { type: Schema.Types.ObjectId, ref: 'User', required: true }, lastVisitDate: Date, nextFollowUpDate: Date,
   currentRiskLevel: { type: String, enum: ['red','yellow','green'], default: 'green' }, isDemo: { type: Boolean, default: false }
+  ,piiConsent: { type: Boolean, required: true, default: false }, piiConsentAt: Date
 }, { timestamps: true });
 
 const careCaseSchema = new Schema({
@@ -26,6 +30,8 @@ const careCaseSchema = new Schema({
 const schemeSchema = new Schema({
   schemeName: { type: String, required: true, unique: true }, description: String, benefits: [String], eligibilityText: String,
   eligibilityRules: Schema.Types.Mixed, requiredDocuments: [String], sourceUrl: String, registrationUrl: String, sourceName: String,
+  governmentLevel: { type: String, enum: ['central','state'], required: true, default: 'central' },
+  applicableStates: [{ type: String, trim: true }],
   lastVerifiedAt: Date, categories: [String]
 }, { timestamps: true });
 

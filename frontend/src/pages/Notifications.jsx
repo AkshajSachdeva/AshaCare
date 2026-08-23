@@ -2,6 +2,7 @@ import { Bell, ExternalLink, Landmark } from 'lucide-react';
 import { api } from '../lib/api';
 import { useI18n } from '../i18n/I18nContext';
 import { ErrorState, Loading, PageHeader, useLoad } from '../components/UI';
+import { localizeContent, notificationTitle } from '../i18n/content';
 
 function announceUnreadCount(unreadCount) {
   window.dispatchEvent(new CustomEvent('notifications-updated', { detail: { unreadCount } }));
@@ -54,10 +55,10 @@ export default function Notifications() {
             <div className={`grid h-10 w-10 shrink-0 place-items-center rounded-2xl ${notification.category === 'government_update' ? 'bg-blue-50 text-blue-600' : 'bg-amber-50 text-amber-600'}`}><Icon size={19}/></div>
             <div className="min-w-0 flex-1">
               <div className="flex items-start justify-between gap-2">
-                <strong className="min-w-0 break-words text-sm">{notification.title}</strong>
+                <strong className="min-w-0 break-words text-sm">{notificationTitle(notification,t)}</strong>
                 {!notification.isRead && <i className="mt-1 h-2 w-2 shrink-0 rounded-full bg-care-500"/>}
               </div>
-              <p className="mt-1 break-words text-xs leading-relaxed text-slate-500">{notification.message}</p>
+              <p className="mt-1 break-words text-xs leading-relaxed text-slate-500">{localizeContent(notification.message,t)}</p>
               <p className="mt-2 text-[10px] font-bold uppercase text-slate-400">{t(notification.category === 'government_update' ? 'governmentUpdate' : 'patientTask')} {notification.sourceUrl && <ExternalLink className="inline" size={10}/>}</p>
             </div>
           </button>;
